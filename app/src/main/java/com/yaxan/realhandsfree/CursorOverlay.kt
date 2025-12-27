@@ -50,7 +50,7 @@ class CursorOverlay(private val context: Context) {
             strokeWidth = 8f
             style = Paint.Style.STROKE
             isAntiAlias = true
-            alpha = 150 // Slightly transparent
+            alpha = 150
         }
         private val pointPaint = Paint().apply {
             color = Color.YELLOW
@@ -171,7 +171,7 @@ class CursorOverlay(private val context: Context) {
                 view.invalidate()
                 try {
                     windowManager.updateViewLayout(view, cursorParams)
-                } catch (e: Exception) {}
+                } catch (_: Exception) {}
             }
         }
     }
@@ -187,7 +187,7 @@ class CursorOverlay(private val context: Context) {
                 cursorParams.width = cursorSize
                 cursorParams.height = cursorSize
             }
-            try { windowManager.updateViewLayout(cursorView, cursorParams) } catch (e: Exception) {}
+            try { windowManager.updateViewLayout(cursorView, cursorParams) } catch (_: Exception) {}
         }
 
         // Handle Skeleton
@@ -199,7 +199,7 @@ class CursorOverlay(private val context: Context) {
                 skeletonParams.width = WindowManager.LayoutParams.MATCH_PARENT
                 skeletonParams.height = WindowManager.LayoutParams.MATCH_PARENT
             }
-            try { windowManager.updateViewLayout(skeletonView, skeletonParams) } catch (e: Exception) {}
+            try { windowManager.updateViewLayout(skeletonView, skeletonParams) } catch (_: Exception) {}
         }
     }
 
@@ -211,7 +211,7 @@ class CursorOverlay(private val context: Context) {
         try {
             if (cursorView != null) windowManager.removeView(cursorView)
             if (skeletonView != null) windowManager.removeView(skeletonView)
-        } catch (e: Exception) {}
+        } catch (_: Exception) {}
         cursorView = null
         skeletonView = null
     }

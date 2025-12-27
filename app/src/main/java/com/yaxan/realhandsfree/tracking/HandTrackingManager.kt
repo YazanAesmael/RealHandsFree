@@ -30,7 +30,6 @@ class HandTrackingManager(
     private val onResults: (HandLandmarkerResult) -> Unit,
     private val onCursorUpdate: (Float, Float, Boolean) -> Unit,
     private val onClick: (Float, Float) -> Unit,
-    // NEW: Callback for Scrolling
     private val onScroll: (Float, Float, Float, Float) -> Unit
 ) {
 
@@ -154,8 +153,6 @@ class HandTrackingManager(
                     (indexTip.y() - thumbTip.y()).pow(2)
         )
 
-        // --- NEW CLICK/SCROLL LOGIC ---
-
         if (distance < pinchThreshold) {
             // User is currently Pinching
             if (!isPinching) {
@@ -170,7 +167,6 @@ class HandTrackingManager(
             if (isPinching) {
                 isPinching = false
 
-                // Calculate how far we moved while pinching
                 val moveDistance = sqrt(
                     (smoothedX - startPinchX).pow(2) +
                             (smoothedY - startPinchY).pow(2)
@@ -187,7 +183,7 @@ class HandTrackingManager(
                     } else {
                         // Small movement = CLICK
                         Log.d("HandTracker", "CLICK DETECTED! Dist: $moveDistance")
-                        onClick(startPinchX, startPinchY) // Click where we started or ended? usually start is safer
+                        onClick(startPinchX, startPinchY)
                     }
                 }
             }

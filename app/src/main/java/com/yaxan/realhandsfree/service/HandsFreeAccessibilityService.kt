@@ -65,7 +65,6 @@ class HandsFreeAccessibilityService : AccessibilityService(), LifecycleOwner {
                 val (screenX, screenY) = cursorOverlay?.getScreenCoordinates(x, y) ?: Pair(0f, 0f)
                 performClick(screenX, screenY)
             },
-            // NEW: Handle Scroll
             onScroll = { startX, startY, endX, endY ->
                 val (screenStartX, screenStartY) = cursorOverlay?.getScreenCoordinates(startX, startY) ?: Pair(0f, 0f)
                 val (screenEndX, screenEndY) = cursorOverlay?.getScreenCoordinates(endX, endY) ?: Pair(0f, 0f)
@@ -97,7 +96,6 @@ class HandsFreeAccessibilityService : AccessibilityService(), LifecycleOwner {
         }, 20)
     }
 
-    // NEW: General Scroll Function
     private fun performScroll(startX: Float, startY: Float, endX: Float, endY: Float) {
         cursorOverlay?.stepAside(true)
 
@@ -106,8 +104,6 @@ class HandsFreeAccessibilityService : AccessibilityService(), LifecycleOwner {
             path.moveTo(startX, startY)
             path.lineTo(endX, endY)
 
-            // 300ms is a good duration for a "Fling" style scroll (like TikTok)
-            // If you want slow controlled drag, increase to 500ms+
             val stroke = GestureDescription.StrokeDescription(path, 0, 300)
             val gesture = GestureDescription.Builder().addStroke(stroke).build()
 
