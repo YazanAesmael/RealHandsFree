@@ -1,8 +1,8 @@
-# RealHandsFree 👋📱
+# RealHandsFree
 
 **RealHandsFree** is a native Android accessibility application that allows users to control their device entirely without touch. By leveraging Google MediaPipe for high-performance hand tracking and Android Accessibility Services, this app converts hand gestures into system-wide clicks and scrolls.
 
-## ✨ Features
+## Features
 
 * **Touch-Free Navigation:** Move the cursor by moving your hand in front of the front-facing camera.
 * **Gesture Recognition:**
@@ -18,7 +18,7 @@
 * **System-Wide Control:** Works over any app (YouTube, Chrome, Instagram, etc.) using the Accessibility Service API.
 * **Modern Stack:** Built with **Kotlin**, **Jetpack Compose**, and **CameraX**.
 
-## 🚀 How to Build & Run
+## How to Build & Run
 
 ### Prerequisites
 
@@ -50,7 +50,7 @@ Upon launching the app, you will be greeted by a Setup Screen. You must grant pe
 2. **Display Over Other Apps:** Required to draw the cursor (red dot) and skeleton overlay on top of other applications.
 3. **Accessibility Service:** Required to perform programmatic clicks and scrolls. The app will redirect you to Settings; find **"Real Hands Free Setup"** (or similar based on service name) and enable it.
 
-## 🎮 Usage Guide
+## Usage Guide
 
 Once the service is active, you can close the main app. The camera runs in the background.
 
@@ -60,7 +60,7 @@ Once the service is active, you can close the main app. The camera runs in the b
 | **Quick Pinch** (Thumb + Index) | **Click / Tap** | Dot turns Green momentarily |
 | **Pinch + Move Hand** | **Scroll** | Dot turns Green + Screen swipes |
 
-## 🏗 Architecture & Tech Stack
+## Architecture & Tech Stack
 
 The application is modularized into three core components:
 
@@ -92,7 +92,7 @@ The application is modularized into three core components:
 * **Action Dispatch:** Uses `dispatchGesture` to inject Click and Scroll events into the Android system.
 * **"Step Aside" Logic:** Before dispatching a click, the service momentarily shrinks the overlay windows (0x0 size) to ensure the click passes through to the target app underneath, rather than clicking the overlay itself.
 
-## 📦 Project Structure
+## Project Structure
 
 ```text
 com.yaxan.realhandsfree
@@ -105,12 +105,12 @@ com.yaxan.realhandsfree
 
 ```
 
-## ⚠️ Known Issues / Limitations
+## Known Issues / Limitations
 
 * **Lighting:** Hand tracking relies on the camera; performance may drop in low-light environments.
 * **Orientation:** Currently optimized for Portrait mode.
 * **Security:** Android disables Accessibility clicks on sensitive screens (like system permission dialogs or banking apps) for security reasons.
 
-## 📄 License
+## License
 
 [MIT License](https://www.google.com/search?q=LICENSE)
